@@ -1,5 +1,75 @@
 # AxiomNgxToggle
 
+### Online Demo
+
+[Usage Demo](http://app.musaei.me/angular/toggle/)
+
+### Installation
+
+##### Install component package from npm :
+
+`npm install axiom-toggle`
+
+##### Import component module :
+
+```typescript
+import { AxiomToggleModule } from 'axiom-toggle';
+
+...
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    AxiomToggleModule,
+  ], 
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
+})
+
+...
+
+```
+
+### Usage
+
+Use `ngModel`
+
+```html
+
+<ax-toggle [(ngModel)]="model" 
+  axMode="round"
+  axColor="indigo">
+</ax-toggle>
+
+```
+
+User `ReactiveFroms`
+
+```html
+
+<ax-toggle formControlName="model" 
+  axMode="round"
+  axColor="indigo">
+</ax-toggle>
+
+```
+
+### @Input() Params
+
+| Name | Usage |
+| ------ | ------ |
+| axMode | round,flat (default=flat) |
+| axColor | purple,indigo,pink,red,cyan,green,yellow,amber,orange,brown |
+
+### @Output() Params
+
+| Name | Usage |
+| ------ | ------ |
+| ngModelChange | Model's change default event |
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
 
 ## Development server
