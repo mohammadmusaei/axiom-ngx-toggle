@@ -45,7 +45,7 @@ Use `ngModel`
 
 ```
 
-User `ReactiveFroms`
+Use `ReactiveFroms`
 
 ```html
 
