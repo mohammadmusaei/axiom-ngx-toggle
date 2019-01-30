@@ -1,12 +1,15 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-2">
-      <input ax-toggle type="checkbox" mode="flat" />
+    <div class="col-md-3">
 
-    </div>
-    <div class="col-md-2">
-      <input ax-toggle type="checkbox" mode="round" />
+
+       <div class="row" *ngFor="let toggle of toggles">
+         <div class="col-md-12 p-4">
+            <ax-toggle [(ngModel)]="toggle.model" axMode="{{toggle.mode}}" axColor="{{toggle.theme}}"></ax-toggle>
+         </div>
+       </div>
+
     </div>
   </div>
 

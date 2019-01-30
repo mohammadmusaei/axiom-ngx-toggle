@@ -107,3 +107,33 @@ $color : #03A9F4;
     border-radius: 0;
   }
 }
+
+//Colors
+$themes : #673AB7,//purple
+#3F51B5,//indigo
+#E91E63, //pink
+#f44336,//red
+#00BCD4, //cyan
+#4CAF50, //green
+#FFEB3B, //yellow
+#FFC107, //amber
+#FF9800, //orange
+#795548; //brown
+
+$themes-name :
+_purple,
+_indigo,
+_pink,
+_red,
+_cyan,
+_green,
+_yellow,
+_amber,
+_orange,
+_brown;
+
+@for $i from 1 to length($themes) {
+  .checkbox-button.#{ nth($themes-name, $i) } .checkbox:checked+.ax-toggle-button:before{
+    background-color: nth($themes, $i);
+  }
+}

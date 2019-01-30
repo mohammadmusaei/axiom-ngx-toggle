@@ -1,41 +1,56 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, Input, forwardRef, Output, EventEmitter } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
-  selector: '[ax-toggle]',
+  selector: 'ax-toggle',
   templateUrl: './axiom-toggle.component.html',
   styleUrls: ['./axiom-toggle.component.scss'],
-  encapsulation : ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AxiomToggleComponent),
+      multi: true
+    }
+  ]
 })
-export class AxiomToggleComponent implements OnInit {
+export class AxiomToggleComponent implements OnInit, ControlValueAccessor {
 
-  @Input() mode : "flat" | "round";
+  @Input() axMode: 'flat' | 'round';
+  @Input() axColor: string;
+  @Input() set ngModel(ngModel: boolean) {
+    this._ngModel = ngModel;
+  }
+  get ngModel() {
+    return this._ngModel;
+  }
+  @Output() ngModelChange = new EventEmitter<boolean>();
 
-  constructor(private _renderer : Renderer2,private _element : ElementRef) { }
+  private _ngModel: boolean;
+
+  constructor() { }
 
   ngOnInit() {
-    this.mode = this.mode || "round";
-    this.create();
+    this.axMode = this.axMode || 'round';
   }
 
-  private create() {
-    var parent = this._element.nativeElement.parentElement;
-    this._renderer.addClass(this._element.nativeElement, "checkbox");
-    //create wrapper
-    var wrapper = this._renderer.createElement("div");
-    this._renderer.addClass(wrapper, "button");
-    this._renderer.addClass(wrapper, "r");
-    this._renderer.addClass(wrapper, "checkbox-button");
-    this._renderer.addClass(wrapper, this.mode);
-    this._renderer.appendChild(wrapper, this._element.nativeElement);
-    //add siblings
-    var ks = this._renderer.createElement("div");
-    this._renderer.addClass(ks, "ax-toggle-button");
-    var layer = this._renderer.createElement("div");
-    this._renderer.addClass(layer, "ax-toggle-layer");
-    this._renderer.appendChild(wrapper, ks);
-    this._renderer.appendChild(wrapper, layer);
-
-    this._renderer.insertBefore(parent, wrapper, parent.firstElementChild);
+  onChange(){
+    this.propagateChange(this.ngModel);
   }
+
+  public writeValue(obj: boolean) {
+    this.ngModel = obj;
+  }
+
+  public registerOnChange(fn: (_: boolean) => void): void {
+    this.propagateChange = fn;
+  }
+
+  public registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  public propagateChange = (_: boolean) => { }
+  public onTouched = () => { };
 
 }
