@@ -1,3 +1,13 @@
+
+$in-transition : 0.08s ease-out all;
+$out-transition : 0.1s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+$botton-size : 16px;
+$botton-active-size : 25px;
+$botton-edge-gap : 3px;
+$container-h : 20px;
+$container-w : 48px;
+$color : #03A9F4;
+
 .ax-toggle-cover,
 .ax-toggle-button,
 .ax-toggle-layer {
@@ -10,8 +20,8 @@
 
 .checkbox-button.button {
   position: relative;
-  width: 40px;
-  height: 20px;
+  width: $container-w;
+  height: $container-h;
   margin: 0 auto;
   overflow: hidden;
   display: inline-block;
@@ -21,12 +31,10 @@
 }
 
 .button.r,
-.button.r .ax-toggle-layer {
-  border-radius: 100px;
-}
-
-.button.b2 {
-  border-radius: 2px;
+.button.r {
+   .ax-toggle-layer {
+     border-radius: 100px;
+   }
 }
 
 .checkbox {
@@ -48,41 +56,40 @@
   width: 100%;
   background-color: #eee;
   border: 1px solid #ddd;
-  transition: 0.3s ease all;
+  transition: $in-transition;
   z-index: 1;
   padding: 0px;
 }
 
-/* Button 3 */
 .checkbox-button .ax-toggle-button:before {
   content: '';
   position: absolute;
   top: 2px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
+  left: $botton-edge-gap;
+  width: $botton-size;
+  height: $botton-size;
   color: #fff;
   font-size: 9px;
   text-align: center;
   line-height: 1;
   background-color: #ccc;
   border-radius: 50%;
-  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+  transition: $out-transition;
 }
 
 .checkbox-button .checkbox:active+.ax-toggle-button:before {
-  width: 20px;
+  width: $botton-active-size;
   border-radius: 100px;
 }
 
 .checkbox-button .checkbox:checked:active+.ax-toggle-button:before {
-  margin-left: -5px;
+  margin-left: $botton-edge-gap - ($container-w - $botton-active-size);
 }
 
 .checkbox-button .checkbox:checked+.ax-toggle-button:before {
   content: '';
-  left: 22px;
-  background-color: #03A9F4;
+  left: ($container-w - $botton-size)-$botton-edge-gap;
+  background-color: $color;
 }
 
 .checkbox-button .checkbox:checked~.ax-toggle-layer {

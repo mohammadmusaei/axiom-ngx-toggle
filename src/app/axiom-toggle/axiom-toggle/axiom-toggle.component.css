@@ -10,7 +10,7 @@
 
 .checkbox-button.button {
   position: relative;
-  width: 40px;
+  width: 48px;
   height: 20px;
   margin: 0 auto;
   overflow: hidden;
@@ -20,13 +20,9 @@
   margin-left: -1em;
 }
 
-.button.r,
+.button.r .ax-toggle-layer,
 .button.r .ax-toggle-layer {
   border-radius: 100px;
-}
-
-.button.b2 {
-  border-radius: 2px;
 }
 
 .checkbox {
@@ -48,12 +44,11 @@
   width: 100%;
   background-color: #eee;
   border: 1px solid #ddd;
-  transition: 0.3s ease all;
+  transition: 0.08s ease-out all;
   z-index: 1;
   padding: 0px;
 }
 
-/* Button 3 */
 .checkbox-button .ax-toggle-button:before {
   content: '';
   position: absolute;
@@ -67,21 +62,21 @@
   line-height: 1;
   background-color: #ccc;
   border-radius: 50%;
-  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+  transition: 0.1s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 
 .checkbox-button .checkbox:active + .ax-toggle-button:before {
-  width: 20px;
+  width: 25px;
   border-radius: 100px;
 }
 
 .checkbox-button .checkbox:checked:active + .ax-toggle-button:before {
-  margin-left: -5px;
+  margin-left: -20px;
 }
 
 .checkbox-button .checkbox:checked + .ax-toggle-button:before {
   content: '';
-  left: 22px;
+  left: 29px;
   background-color: #03A9F4;
 }
 
