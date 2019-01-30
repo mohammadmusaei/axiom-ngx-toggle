@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  form = new FormGroup({});
+  controls = [];
   toggles = [
     {
       model : true,
@@ -39,5 +42,16 @@ export class AppComponent {
       mode : "flat"
     }
   ]
+
+  
+  ngOnInit(): void {
+    [...this.toggles].forEach((toggle,index)=>{
+      var fcontrol = new FormControl();
+      fcontrol.setValue(true);
+      this.controls.push(`_t${index}`);
+      this.form.addControl(`_t${index}`,fcontrol);
+    });
+  }
+
 
 }

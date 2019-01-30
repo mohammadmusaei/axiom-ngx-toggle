@@ -1,15 +1,38 @@
-<div class="container">
+<div class="container pt-3">
 
   <div class="row">
-    <div class="col-md-3">
-
-
-       <div class="row" *ngFor="let toggle of toggles">
-         <div class="col-md-12 p-4">
-            <ax-toggle [(ngModel)]="toggle.model" axMode="{{toggle.mode}}" axColor="{{toggle.theme}}"></ax-toggle>
-         </div>
+    <div class="col-md-6 pt-3">
+        <p class="lead">
+            Work with <mark>ngModel</mark>
+        </p>
+       <div class="col-md-12 card">
+          <div class="p-3" *ngFor="let toggle of toggles">
+              <div class="d-flex justify-content-center">
+                 <ax-toggle [(ngModel)]="toggle.model" 
+                 axMode="{{toggle.mode}}"
+                  axColor="{{toggle.theme}}"></ax-toggle>
+                 <pre>{{ toggle.model }}</pre>
+              </div>
+            </div> 
        </div>
-
+    </div>
+    <div class="col-md-6 pt-3">
+        <p class="lead">
+            Work with <mark>Reactive Forms</mark>
+        </p>
+       <div class="col-md-12 card">
+          <div class="p-3" *ngFor="let control of controls;let index = index">
+              <form [formGroup]="form">
+                  <div class="d-flex justify-content-center">
+                      <ax-toggle
+                      formControlName="{{ control }}" 
+                      axMode="{{toggles[index].mode}}" 
+                      axColor="{{toggles[index].theme}}"></ax-toggle>
+                      <pre>{{ form.value[control] }}</pre>
+                   </div>
+               </form>
+           </div> 
+       </div>
     </div>
   </div>
 
