@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: '[ax-toggle]',
@@ -8,9 +8,16 @@ import { Component, OnInit, ViewEncapsulation, Renderer2, ElementRef } from '@an
 })
 export class AxiomToggleComponent implements OnInit {
 
+  @Input() mode : "flat" | "round";
+
   constructor(private _renderer : Renderer2,private _element : ElementRef) { }
 
   ngOnInit() {
+    this.mode = this.mode || "round";
+    this.create();
+  }
+
+  private create() {
     var parent = this._element.nativeElement.parentElement;
     this._renderer.addClass(this._element.nativeElement, "checkbox");
     //create wrapper
@@ -18,6 +25,7 @@ export class AxiomToggleComponent implements OnInit {
     this._renderer.addClass(wrapper, "button");
     this._renderer.addClass(wrapper, "r");
     this._renderer.addClass(wrapper, "checkbox-button");
+    this._renderer.addClass(wrapper, this.mode);
     this._renderer.appendChild(wrapper, this._element.nativeElement);
     //add siblings
     var ks = this._renderer.createElement("div");

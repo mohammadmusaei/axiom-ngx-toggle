@@ -5,7 +5,7 @@ $botton-size : 16px;
 $botton-active-size : 25px;
 $botton-edge-gap : 3px;
 $container-h : 20px;
-$container-w : 48px;
+$container-w : 40px;
 $color : #03A9F4;
 
 .ax-toggle-cover,
@@ -83,7 +83,7 @@ $color : #03A9F4;
 }
 
 .checkbox-button .checkbox:checked:active+.ax-toggle-button:before {
-  margin-left: $botton-edge-gap - ($container-w - $botton-active-size);
+  margin-left: -10px;
 }
 
 .checkbox-button .checkbox:checked+.ax-toggle-button:before {
@@ -94,4 +94,16 @@ $color : #03A9F4;
 
 .checkbox-button .checkbox:checked~.ax-toggle-layer {
   background-color: #eee;
+}
+
+
+//Flat Mode
+
+.checkbox-button.button.flat {
+  .ax-toggle-button:before{
+    border-radius: 0;
+  }
+  .ax-toggle-layer {
+    border-radius: 0;
+  }
 }
