@@ -1,4 +1,4 @@
-# AxiomNgxToggle
+# Axiom ngx-toggle
 
 ### Online Demo
 
